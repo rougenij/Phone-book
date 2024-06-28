@@ -44,3 +44,22 @@ ul {
   font-size: 1.5rem;
   cursor: pointer;
 }
+
+.search_container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search_bar {
+  width: 100%;
+  font-size: 1.3rem;
+  padding: 0.3rem;
+  padding-right: 30px;
+}
+
+.search_icon {
+  position: absolute;
+  right: 10px;
+}
