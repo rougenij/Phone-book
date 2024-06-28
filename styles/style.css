@@ -7,6 +7,19 @@
 
 body {
   background-color: lightblue;
+  min-height: 100dvh;
+}
+
+header {
+  height: 10dvh;
+}
+
+main {
+  height: 80dvh;
+}
+
+footer {
+  height: 10dvh;
 }
 
 /* Utility */
@@ -28,29 +41,6 @@ body {
   justify-content: space-between;
 }
 
-.top-bar {
-  width: 100%;
-  justify-content: space-between;
-  padding: 0.5rem;
-}
-
-.list {
-  width: 100%;
-  padding: 0.5rem;
-}
-
-.item {
-  width: 100%;
-  padding: 0.5rem;
-}
-
-.pfp {
-  width: 50px;
-  height: 50px;
-  border: 2px black solid;
-  border-radius: 10rem;
-}
-
 .icon-btn {
   background: transparent;
   border: none;
@@ -58,6 +48,13 @@ body {
   height: 35px;
   font-size: 1.5rem;
   cursor: pointer;
+}
+
+/* Top bar */
+.top-bar {
+  width: 100%;
+  justify-content: space-between;
+  padding: 0.5rem;
 }
 
 .search-container {
@@ -77,4 +74,22 @@ body {
 .search-icon {
   position: absolute;
   right: 10px;
+}
+
+/* List */
+.list {
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.item {
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.pfp {
+  width: 50px;
+  height: 50px;
+  border: 2px black solid;
+  border-radius: 10rem;
 }
