@@ -35,3 +35,12 @@ ul {
   border: 2px black solid;
   border-radius: 10rem;
 }
+
+.icon_btn {
+  background: transparent;
+  border: none;
+  width: 35px;
+  height: 35px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
