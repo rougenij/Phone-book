@@ -11,15 +11,22 @@ body {
 }
 
 header {
-  height: 10dvh;
+  min-height: 10dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 5rem;
+  font-style: bold;
 }
 
 main {
-  height: 80dvh;
+  min-height: 80dvh;
 }
 
 footer {
-  height: 10dvh;
+  min-height: 10dvh;
+  text-align: center;
+  font-size: 1.5rem;
 }
 
 /* Utility */
@@ -38,6 +45,7 @@ footer {
 
 .flex {
   display: flex;
+  align-items: center;
   justify-content: space-between;
 }
 
@@ -92,4 +100,9 @@ footer {
   height: 50px;
   border: 2px black solid;
   border-radius: 10rem;
+}
+
+.name {
+  font-size: 1.3rem;
+  padding: 1rem;
 }
