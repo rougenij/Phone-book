@@ -29,6 +29,8 @@ const list = document.querySelector(".list");
 data.forEach((elem) => addUser(elem));
 
 function addUser(user) {
+  if (list.innerHTML == `<h2 class="no-users">No users added yet.</h2>`)
+    list.innerHTML = "";
   const li = document.createElement("li");
   li.classList = "flex item";
   li.innerHTML = `
@@ -53,4 +55,10 @@ function addUser(user) {
     </div>
   `;
   list.append(li);
+}
+
+function deleteAll() {
+  list.innerHTML = `
+    <h2 class="no-users">No users added yet.</h2>
+  `;
 }

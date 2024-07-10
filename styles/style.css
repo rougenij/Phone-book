@@ -109,3 +109,7 @@ footer {
   font-size: 1.3rem;
   padding: 1rem;
 }
+
+.no-users {
+  text-align: center;
+}
