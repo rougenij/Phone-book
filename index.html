@@ -25,7 +25,7 @@
           </div>
 
           <div>
-            <button class="icon-btn">
+            <button class="icon-btn" onclick="addNewUser()">
               <i class="fa-solid fa-user-plus"></i>
             </button>
             <button class="icon-btn" onclick="deleteAll()">
@@ -41,6 +41,19 @@
     <footer>
       Made by Claude & Rouge <i class="fa-solid fa-copyright"></i>
     </footer>
+
+    <div class="modal" id="myModal" onclick="closeModal(event)">
+      <div id="modalContent" class="modal-content">
+        <button
+          class="close-btn"
+          id="closeModalBtn"
+          onclick="closeModal(event)"
+        >
+          X
+        </button>
+        <div id="modal-container" class="form-content"></div>
+      </div>
+    </div>
   </body>
   <script src="js/index.js"></script>
 </html>

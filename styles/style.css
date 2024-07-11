@@ -113,3 +113,69 @@ footer {
 .no-users {
   text-align: center;
 }
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-item {
+  padding: 1.5rem;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-item input {
+  margin: 0 0.5rem;
+}
+
+.input-btn {
+  cursor: pointer;
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.info-flex {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.info-item {
+  padding: 1.5rem;
+  text-align: left;
+}
