@@ -76,9 +76,9 @@ function addUser(user) {
 
   // Creating a list item element and setting it up
   const li = document.createElement("li");
-  li.classList = "flex item";
+  li.classList = "flex-center-between item";
   li.innerHTML = `
-    <div class="flex">
+    <div class="flex-center-between left-side">
         <img
         class="pfp"
         src="${user.img}"
@@ -86,7 +86,7 @@ function addUser(user) {
         />
         <p class="name">${user.name}</p>
     </div>
-    <div class="flex">
+    <div class="flex-center-between right-side">
         <button class="icon-btn" onclick="userInfo('${user.number}')">
         <i class="fa-solid fa-circle-info"></i>
         </button>
