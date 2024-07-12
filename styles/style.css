@@ -5,6 +5,7 @@
   box-sizing: border-box;
 }
 
+/* Basic */
 body {
   background-color: lightblue;
   min-height: 100dvh;
@@ -13,23 +14,22 @@ body {
 }
 
 header {
-  /* min-height: 10dvh; */
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 5rem;
   font-style: bold;
+  padding: 1rem;
 }
 
 main {
-  /* min-height: 80dvh; */
   flex-grow: 1;
 }
 
 footer {
-  /* min-height: 10dvh; */
   text-align: center;
   font-size: 1.5rem;
+  padding: 1rem;
 }
 
 /* Utility */

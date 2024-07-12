@@ -68,9 +68,13 @@ const list = document.querySelector(".list");
 
 data.forEach((elem) => addUser(elem));
 
+// Function adds a user/person into the list
 function addUser(user) {
+  // If the list is empty then reset the list by removing a line of text.
   if (list.innerHTML == `<h2 class="no-users">No users added yet.</h2>`)
     list.innerHTML = "";
+
+  // Creating a list item element and setting it up
   const li = document.createElement("li");
   li.classList = "flex item";
   li.innerHTML = `
@@ -97,6 +101,7 @@ function addUser(user) {
   list.append(li);
 }
 
+// Function that resets the list to be empty and sets a line of text indicating that it is empty.
 function deleteAll() {
   list.innerHTML = `
     <h2 class="no-users">No users added yet.</h2>
@@ -104,10 +109,12 @@ function deleteAll() {
 }
 
 //popup functions
+// Function that opens the modal popup
 function openModal(num) {
   document.getElementById("myModal").style.display = "flex";
 }
 
+// Function that closes the modal popup
 function closeModal(event) {
   if (
     event.target === document.getElementById("closeModalBtn") ||
@@ -116,7 +123,7 @@ function closeModal(event) {
     document.getElementById("myModal").style.display = "none";
 }
 
-//Add a new userr
+// Function that opens the modal popup and sets it up for a new person/user to be added into the list.
 const addNewUser = () => {
   openModal();
 
@@ -124,6 +131,7 @@ const addNewUser = () => {
   div.innerHTML = formHTML;
 };
 
+// Function that opens the modal popup and sets it up with a user/person information to be edited and saved into the list.
 const editUser = (phoneID) => {
   openModal();
 
@@ -137,6 +145,7 @@ const editUser = (phoneID) => {
   const address = document.getElementById("input-address");
   const img = document.getElementById("input-image");
 
+  // phoneID is a number so the first zero is always removed. This only works with Israeli numbers. for now.
   phoneID = "0" + phoneID;
   const user = data.filter((user) => user.number === phoneID)[0];
 
@@ -147,6 +156,7 @@ const editUser = (phoneID) => {
   img.value = user.img;
 };
 
+// Function that opens the modal popup and inserts existing user/person information.
 const userInfo = (phoneID) => {
   openModal();
 
