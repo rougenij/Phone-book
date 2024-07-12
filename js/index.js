@@ -87,10 +87,10 @@ function addUser(user) {
         <p class="name">${user.name}</p>
     </div>
     <div class="flex">
-        <button class="icon-btn" onclick="userInfo(${user.number})">
+        <button class="icon-btn" onclick="userInfo('${user.number}')">
         <i class="fa-solid fa-circle-info"></i>
         </button>
-        <button class="icon-btn" onclick="editUser(${user.number})">
+        <button class="icon-btn" onclick="editUser('${user.number}')">
         <i class="fa-solid fa-user-pen"></i>
         </button>
         <button class="icon-btn">
@@ -145,8 +145,6 @@ const editUser = (phoneID) => {
   const address = document.getElementById("input-address");
   const img = document.getElementById("input-image");
 
-  // phoneID is a number so the first zero is always removed. This only works with Israeli numbers. for now.
-  phoneID = "0" + phoneID;
   const user = data.filter((user) => user.number === phoneID)[0];
 
   name.value = user.name;
@@ -161,7 +159,6 @@ const userInfo = (phoneID) => {
   openModal();
 
   const div = document.getElementById("modal-container");
-  phoneID = "0" + phoneID;
   const user = data.filter((user) => user.number === phoneID)[0];
 
   div.innerHTML = `
