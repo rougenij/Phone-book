@@ -1,6 +1,6 @@
 const data = [
   {
-    img: "../assets/Dan.jpg",
+    img: "https://raw.githubusercontent.com/rougenij/Phone-book/main/assets/Dan.jpg",
     name: "Dan Salvatori",
     number: "0597684218",
     age: 37,
