@@ -33,27 +33,27 @@ const formHTML = `
  <form>
   <div>
       <div class="form-item">
-        <label for"name">Contact Name:</label>
+        <label for"name" class="desc-label">Contact Name:</label>
         <input type="text" placeholder="John Doe..."  id="input-name"/>
       </div>
     
       <div class="form-item">
-        <label for="number">Contact Number:</label>
+        <label for="number" class="desc-label">Contact Number:</label>
         <input type="text" placeholder="0595234585..." id="input-number" />
       </div>
     
       <div class="form-item">
-        <label for="name">Contact Address:</label>
+        <label for="name" class="desc-label">Contact Address:</label>
         <input type="text" placeholder="Any town,123" id="input-address" />
       </div>
     
       <div class="form-item">
-        <label for="age">Contact Age:</label>
+        <label for="age" class="desc-label">Contact Age:</label>
         <input type="text" placeholder="25..." id="input-age"/>
       </div>
 
       <div class="form-item">
-        <label for="image">Contact Image:</label>
+        <label for="image" class="desc-label">Contact Image:</label>
         <input type="text"  id="input-image"/>
       </div>
     
@@ -104,7 +104,7 @@ function addUser(user) {
 // Function that resets the list to be empty and sets a line of text indicating that it is empty.
 function deleteAll() {
   list.innerHTML = `
-    <h2 class="no-users">No users added yet.</h2>
+    <h2 class="sub-info">No users added yet.</h2>
   `;
 }
 
@@ -136,22 +136,28 @@ const editUser = (phoneID) => {
   openModal();
 
   const div = document.getElementById("modal-container");
-  div.innerHTML = formHTML;
-
-  //Selecing the inputs
-  const name = document.getElementById("input-name");
-  const number = document.getElementById("input-number");
-  const age = document.getElementById("input-age");
-  const address = document.getElementById("input-address");
-  const img = document.getElementById("input-image");
 
   const user = data.filter((user) => user.number === phoneID)[0];
+  if (user === undefined) {
+    div.innerHTML = `
+      <h2 class="sub-info">Could not find person with ${phoneID}</h2>
+    `;
+  } else {
+    div.innerHTML = formHTML;
 
-  name.value = user.name;
-  number.value = user.number;
-  age.value = user.age;
-  address.value = user.address;
-  img.value = user.img;
+    //Selecing the inputs
+    const name = document.getElementById("input-name");
+    const number = document.getElementById("input-number");
+    const age = document.getElementById("input-age");
+    const address = document.getElementById("input-address");
+    const img = document.getElementById("input-image");
+
+    name.value = user.name;
+    number.value = user.number;
+    age.value = user.age;
+    address.value = user.address;
+    img.value = user.img;
+  }
 };
 
 // Function that opens the modal popup and inserts existing user/person information.
@@ -164,16 +170,16 @@ const userInfo = (phoneID) => {
   div.innerHTML = `
   <div class="info-flex">
     <div class="info-item">
-      Contact Name:<span>${user.name}</span>
+      <span class="desc-label">Contact Name:</span> <span>${user.name}</span>
     </div>
     <div class="info-item">
-      Contact Number: <span>${user.number}</span>
+      <span class="desc-label">Contact Number:</span> <span>${user.number}</span>
     </div>
     <div class="info-item">
-      Contact Age: <span>${user.age}</span>
+      <span class="desc-label">Contact Age:</span> <span>${user.age}</span>
     </div>
     <div class="info-item">
-      Contact Address: <span>${user.address} </span>
+      <span class="desc-label">Contact Address:</span> <span>${user.address} </span>
     </div>
   </div>
   
