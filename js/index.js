@@ -33,27 +33,27 @@ const formHTML = `
  <form>
   <div>
       <div class="form-item">
-        <label for"name" class="desc-label">Contact Name:</label>
+        <label for"name" class="info-label">Contact Name:</label>
         <input type="text" placeholder="John Doe..."  id="input-name"/>
       </div>
     
       <div class="form-item">
-        <label for="number" class="desc-label">Contact Number:</label>
+        <label for="number" class="info-label">Contact Number:</label>
         <input type="text" placeholder="0595234585..." id="input-number" />
       </div>
     
       <div class="form-item">
-        <label for="name" class="desc-label">Contact Address:</label>
+        <label for="name" class="info-label">Contact Address:</label>
         <input type="text" placeholder="Any town,123" id="input-address" />
       </div>
     
       <div class="form-item">
-        <label for="age" class="desc-label">Contact Age:</label>
+        <label for="age" class="info-label">Contact Age:</label>
         <input type="text" placeholder="25..." id="input-age"/>
       </div>
 
       <div class="form-item">
-        <label for="image" class="desc-label">Contact Image:</label>
+        <label for="image" class="info-label">Contact Image:</label>
         <input type="text"  id="input-image"/>
       </div>
     
@@ -170,16 +170,16 @@ const userInfo = (phoneID) => {
   div.innerHTML = `
   <div class="info-flex">
     <div class="info-item">
-      <span class="desc-label">Contact Name:</span> <span>${user.name}</span>
+      <span class="info-label">Contact Name:</span> <span class="info-info">${user.name}</span>
     </div>
     <div class="info-item">
-      <span class="desc-label">Contact Number:</span> <span>${user.number}</span>
+      <span class="info-label">Contact Number:</span> <span class="info-info">${user.number}</span>
     </div>
     <div class="info-item">
-      <span class="desc-label">Contact Age:</span> <span>${user.age}</span>
+      <span class="info-label">Contact Age:</span> <span class="info-info">${user.age}</span>
     </div>
     <div class="info-item">
-      <span class="desc-label">Contact Address:</span> <span>${user.address} </span>
+      <span class="info-label">Contact Address:</span> <span class="info-info">${user.address} </span>
     </div>
   </div>
   
