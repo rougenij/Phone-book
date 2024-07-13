@@ -1,4 +1,4 @@
-const data = [
+let data = [
   {
     img: "https://raw.githubusercontent.com/rougenij/Phone-book/main/assets/Dan.jpg",
     name: "Dan Salvatori",
@@ -58,7 +58,7 @@ const formHTML = `
       </div>
     
       <div class="form-item">
-        <button class="input-btn" onclick="saveContact()">Save</button>
+        <button class="input-btn" onclick="saveUser(event)">Save</button>
       </div>
     </div>
   </form>
@@ -77,6 +77,7 @@ function addUser(user) {
   // Creating a list item element and setting it up
   const li = document.createElement("li");
   li.classList = "flex-center-between item";
+  li.id = `number-${user.number}`;
   li.innerHTML = `
     <div class="flex-center-between left-side">
         <img
@@ -93,7 +94,7 @@ function addUser(user) {
         <button class="icon-btn" onclick="editUser('${user.number}')">
         <i class="fa-solid fa-user-pen"></i>
         </button>
-        <button class="icon-btn">
+        <button class="icon-btn" onclick="deleteUser('${user.number}')">
         <i class="fa-solid fa-user-minus"></i>
         </button>
     </div>
@@ -185,3 +186,18 @@ const userInfo = (phoneID) => {
   
   `;
 };
+
+// Function that deletes a user/person from the data and list.
+function deleteUser(phoneID) {
+  data = data.filter((user) => user.number !== phoneID);
+  document.querySelector(`#number-${phoneID}`).remove();
+  if (data.length === 0)
+    list.innerHTML = `
+    <h2 class="sub-info">No users added yet.</h2>
+  `;
+}
+
+// Function that takes the inputted information from the user inside the input fields and saves it to an existing number if it exists otherwise adds.
+function saveUser(e) {
+  e.preventDefault();
+}
