@@ -39,7 +39,7 @@ const formHTML = `
     
       <div class="form-item">
         <label for="number" class="info-label">Contact Number:</label>
-        <input type="text" placeholder="0595234585..." id="input-number" />
+        <input type="tel" placeholder="0595234585..." id="input-number" />
       </div>
     
       <div class="form-item">
@@ -49,7 +49,7 @@ const formHTML = `
     
       <div class="form-item">
         <label for="age" class="info-label">Contact Age:</label>
-        <input type="text" placeholder="25..." id="input-age"/>
+        <input type="number" placeholder="25..." id="input-age"/>
       </div>
 
       <div class="form-item">
@@ -200,4 +200,28 @@ function deleteUser(phoneID) {
 // Function that takes the inputted information from the user inside the input fields and saves it to an existing number if it exists otherwise adds.
 function saveUser(e) {
   e.preventDefault();
+
+  const name = document.getElementById("input-name");
+  const number = document.getElementById("input-number");
+  const age = document.getElementById("input-age");
+  const address = document.getElementById("input-address");
+  const img = document.getElementById("input-image");
+
+  if (name.value != "" && number.value != "") {
+    if (img.value == "") {
+      img.value =
+        "https://raw.githubusercontent.com/rougenij/Phone-book/main/assets/user.png";
+    }
+    const newUser = {
+      img: img.value,
+      name: name.value,
+      number: number.value,
+      age: age.value,
+      address: address.value,
+    };
+
+    data.push(newUser);
+    addUser(newUser);
+    document.getElementById("myModal").style.display = "none";
+  } else alert("Dont leave empty fields!");
 }
