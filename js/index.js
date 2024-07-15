@@ -65,14 +65,14 @@ const formHTML = `
   `;
 
 const list = document.querySelector(".list");
+let isEmpty = false;
 
 data.forEach((elem) => addUser(elem));
 
 // Function adds a user/person into the list
 function addUser(user) {
   // If the list is empty then reset the list by removing a line of text.
-  if (list.innerHTML == `<h2 class="no-users">No users added yet.</h2>`)
-    list.innerHTML = "";
+  if (isEmpty) list.innerHTML = "";
 
   // Creating a list item element and setting it up
   const li = document.createElement("li");
@@ -107,9 +107,11 @@ function deleteAll() {
   list.innerHTML = `
     <h2 class="sub-info">No users added yet.</h2>
   `;
+  data = [];
+  isEmpty = true;
 }
 
-//popup functions
+// Popup functions
 // Function that opens the modal popup
 function openModal(num) {
   document.getElementById("myModal").style.display = "flex";
@@ -144,8 +146,40 @@ const editUser = (phoneID) => {
       <h2 class="sub-info">Could not find person with ${phoneID}</h2>
     `;
   } else {
-    div.innerHTML = formHTML;
+    div.innerHTML = `
+     <form>
+        <div>
+            <div class="form-item">
+              <label for"name" class="info-label">Contact Name:</label>
+              <input type="text" placeholder="John Doe..."  id="input-name"/>
+            </div>
+          
+            <div class="form-item">
+              <label for="number" class="info-label">Contact Number:</label>
+              <input type="tel" placeholder="0595234585..." id="input-number" />
+            </div>
+          
+            <div class="form-item">
+              <label for="name" class="info-label">Contact Address:</label>
+              <input type="text" placeholder="Any town,123" id="input-address" />
+            </div>
+          
+            <div class="form-item">
+              <label for="age" class="info-label">Contact Age:</label>
+              <input type="number" placeholder="25..." id="input-age"/>
+            </div>
 
+            <div class="form-item">
+              <label for="image" class="info-label">Contact Image:</label>
+              <input type="text"  id="input-image"/>
+            </div>
+          
+            <div class="form-item">
+              <button class="input-btn" onclick="saveEdit(event,'${phoneID}')">Save</button>
+            </div>
+          </div>
+      </form>
+  `;
     //Selecing the inputs
     const name = document.getElementById("input-name");
     const number = document.getElementById("input-number");
@@ -187,16 +221,7 @@ const userInfo = (phoneID) => {
   `;
 };
 
-// Function that deletes a user/person from the data and list.
-function deleteUser(phoneID) {
-  data = data.filter((user) => user.number !== phoneID);
-  document.querySelector(`#number-${phoneID}`).remove();
-  if (data.length === 0)
-    list.innerHTML = `
-    <h2 class="sub-info">No users added yet.</h2>
-  `;
-}
-
+//Functions that change contacts
 // Function that takes the inputted information from the user inside the input fields and saves it to an existing number if it exists otherwise adds.
 function saveUser(e) {
   e.preventDefault();
@@ -225,3 +250,60 @@ function saveUser(e) {
     document.getElementById("myModal").style.display = "none";
   } else alert("Dont leave empty fields!");
 }
+
+// Function that deletes a user/person from the data and list.
+function deleteUser(phoneID) {
+  data = data.filter((user) => user.number !== phoneID);
+  document.querySelector(`#number-${phoneID}`).remove();
+  if (data.length === 0) {
+    isEmpty = true;
+    list.innerHTML = `
+    <h2 class="sub-info">No users added yet.</h2>
+    `;
+  }
+}
+
+//Function that saves contact edit
+const saveEdit = (e, phoneID) => {
+  e.preventDefault();
+
+  const user = data.filter((user) => user.number === phoneID)[0];
+
+  const name = document.getElementById("input-name");
+  const number = document.getElementById("input-number");
+  const age = document.getElementById("input-age");
+  const address = document.getElementById("input-address");
+  const img = document.getElementById("input-image");
+
+  if (name.value != "" && number.value != "") {
+    user.name = name.value;
+    user.number = number.value;
+    user.age = age.value;
+    user.address = address.value;
+    user.img = img.value;
+
+    const userHTML = document.getElementById(`number-${phoneID}`);
+    userHTML.innerHTML = `
+    <div class="flex-center-between left-side">
+        <img
+        class="pfp"
+        src="${user.img}"
+        alt="${user.name} image"
+        />
+        <p class="name">${user.name}</p>
+    </div>
+    <div class="flex-center-between right-side">
+        <button class="icon-btn" onclick="userInfo('${user.number}')">
+        <i class="fa-solid fa-circle-info"></i>
+        </button>
+        <button class="icon-btn" onclick="editUser('${user.number}')">
+        <i class="fa-solid fa-user-pen"></i>
+        </button>
+        <button class="icon-btn" onclick="deleteUser('${user.number}')">
+        <i class="fa-solid fa-user-minus"></i>
+        </button>
+    </div>
+  `;
+    document.getElementById("myModal").style.display = "none";
+  } else alert("Please enter name or phone number");
+};
