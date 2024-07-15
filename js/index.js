@@ -29,41 +29,6 @@ let data = [
   },
 ];
 
-const formHTML = `
- <form>
-  <div>
-      <div class="form-item">
-        <label for"name" class="info-label">Contact Name:</label>
-        <input type="text" placeholder="John Doe..."  id="input-name"/>
-      </div>
-    
-      <div class="form-item">
-        <label for="number" class="info-label">Contact Number:</label>
-        <input type="tel" placeholder="0595234585..." id="input-number" />
-      </div>
-    
-      <div class="form-item">
-        <label for="name" class="info-label">Contact Address:</label>
-        <input type="text" placeholder="Any town,123" id="input-address" />
-      </div>
-    
-      <div class="form-item">
-        <label for="age" class="info-label">Contact Age:</label>
-        <input type="number" placeholder="25..." id="input-age"/>
-      </div>
-
-      <div class="form-item">
-        <label for="image" class="info-label">Contact Image:</label>
-        <input type="text"  id="input-image"/>
-      </div>
-    
-      <div class="form-item">
-        <button class="input-btn" onclick="saveUser(event)">Save</button>
-      </div>
-    </div>
-  </form>
-  `;
-
 const list = document.querySelector(".list");
 let isEmpty = false;
 
@@ -131,7 +96,40 @@ const addNewUser = () => {
   openModal();
 
   const div = document.getElementById("modal-container");
-  div.innerHTML = formHTML;
+  div.innerHTML = `
+ <form>
+  <div>
+      <div class="form-item">
+        <label for"name" class="info-label">Contact Name:</label>
+        <input type="text" placeholder="John Doe..."  id="input-name"/>
+      </div>
+    
+      <div class="form-item">
+        <label for="number" class="info-label">Contact Number:</label>
+        <input type="number" placeholder="0595234585..." id="input-number" />
+      </div>
+    
+      <div class="form-item">
+        <label for="name" class="info-label">Contact Address:</label>
+        <input type="text" placeholder="Any town,123" id="input-address" />
+      </div>
+    
+      <div class="form-item">
+        <label for="age" class="info-label">Contact Age:</label>
+        <input type="number" placeholder="25..." id="input-age"/>
+      </div>
+
+      <div class="form-item">
+        <label for="image" class="info-label">Contact Image:</label>
+        <input type="text"  id="input-image"/>
+      </div>
+    
+      <div class="form-item">
+        <button class="input-btn" onclick="saveUser(event)">Save</button>
+      </div>
+    </div>
+  </form>
+  `;
 };
 
 // Function that opens the modal popup and sets it up with a user/person information to be edited and saved into the list.
@@ -156,7 +154,7 @@ const editUser = (phoneID) => {
           
             <div class="form-item">
               <label for="number" class="info-label">Contact Number:</label>
-              <input type="tel" placeholder="0595234585..." id="input-number" />
+              <input type="number" placeholder="0595234585..." id="input-number" />
             </div>
           
             <div class="form-item">
