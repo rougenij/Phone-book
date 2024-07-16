@@ -30,8 +30,11 @@ let data = [
 ];
 
 const list = document.querySelector(".list");
+const search = document.querySelector(".search-bar");
+
 let isEmpty = false;
 
+// Set up the initial people in list
 data.forEach((elem) => addUser(elem));
 
 // Function adds a user/person into the list
@@ -305,3 +308,13 @@ const saveEdit = (e, phoneID) => {
     document.getElementById("myModal").style.display = "none";
   } else alert("Please enter name or phone number");
 };
+
+// Event Listener on input that listens to search bar input and filters the list accordingly
+search.addEventListener("input", (e) => {
+  const filteredList = data.filter((user) => {
+    return user.name.toLowerCase().includes(e.target.value.toLowerCase());
+  });
+
+  list.innerHTML = "";
+  filteredList.forEach((user) => addUser(user));
+});
