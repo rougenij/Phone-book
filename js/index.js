@@ -100,27 +100,27 @@ const addNewUser = () => {
  <form>
   <div>
       <div class="form-item">
-        <label for"name" class="info-label">Contact Name:</label>
+        <label for"input-name" class="info-label">Contact Name:</label>
         <input type="text" placeholder="John Doe..."  id="input-name"/>
       </div>
     
       <div class="form-item">
-        <label for="number" class="info-label">Contact Number:</label>
+        <label for="input-number" class="info-label">Contact Number:</label>
         <input type="number" placeholder="0595234585..." id="input-number" />
       </div>
     
       <div class="form-item">
-        <label for="name" class="info-label">Contact Address:</label>
+        <label for="input-address" class="info-label">Contact Address:</label>
         <input type="text" placeholder="Any town,123" id="input-address" />
       </div>
     
       <div class="form-item">
-        <label for="age" class="info-label">Contact Age:</label>
+        <label for="input-age" class="info-label">Contact Age:</label>
         <input type="number" placeholder="25..." id="input-age"/>
       </div>
 
       <div class="form-item">
-        <label for="image" class="info-label">Contact Image:</label>
+        <label for="input-image" class="info-label">Contact Image:</label>
         <input type="text"  id="input-image"/>
       </div>
     
@@ -148,27 +148,27 @@ const editUser = (phoneID) => {
      <form>
         <div>
             <div class="form-item">
-              <label for"name" class="info-label">Contact Name:</label>
+              <label for"input-name" class="info-label">Contact Name:</label>
               <input type="text" placeholder="John Doe..."  id="input-name"/>
             </div>
           
             <div class="form-item">
-              <label for="number" class="info-label">Contact Number:</label>
+              <label for="input-number" class="info-label">Contact Number:</label>
               <input type="number" placeholder="0595234585..." id="input-number" />
             </div>
           
             <div class="form-item">
-              <label for="name" class="info-label">Contact Address:</label>
+              <label for="input-address" class="info-label">Contact Address:</label>
               <input type="text" placeholder="Any town,123" id="input-address" />
             </div>
           
             <div class="form-item">
-              <label for="age" class="info-label">Contact Age:</label>
+              <label for="input-age" class="info-label">Contact Age:</label>
               <input type="number" placeholder="25..." id="input-age"/>
             </div>
 
             <div class="form-item">
-              <label for="image" class="info-label">Contact Image:</label>
+              <label for="input-image" class="info-label">Contact Image:</label>
               <input type="text"  id="input-image"/>
             </div>
           
