@@ -473,3 +473,8 @@ function checkUser(number, name, phoneID = "") {
   if (user.length >= 1) return false;
   return true;
 }
+
+// Surprise Function
+function onClickSurprise() {
+  document.body.classList.toggle("surprise");
+}
