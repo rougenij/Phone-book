@@ -15,7 +15,7 @@ let data = [
   },
   {
     img: "https://raw.githubusercontent.com/rougenij/Phone-book/main/assets/Lara.jpg",
-    name: "Lara Lorance",
+    name: "Anya Lorance",
     number: "0559521234",
     age: 28,
     address: "Haifa",
@@ -35,12 +35,22 @@ const search = document.querySelector(".search-bar");
 let isEmpty = false;
 
 // Set up the initial people in list
-data.forEach((elem) => addUser(elem));
+setUpUsers();
+
+// Function that sets up the array of people sorted by name into the list
+function setUpUsers() {
+  list.innerHTML = "";
+  data.sort((user1, user2) => user1.name.localeCompare(user2.name));
+  data.forEach((elem) => addUser(elem));
+}
 
 // Function adds a user/person into the list
 function addUser(user) {
   // If the list is empty then reset the list by removing a line of text.
-  if (isEmpty) list.innerHTML = "";
+  if (isEmpty) {
+    list.innerHTML = "";
+    isEmpty = false;
+  }
 
   // Creating a list item element and setting it up
   const li = document.createElement("li");
@@ -68,6 +78,14 @@ function addUser(user) {
     </div>
   `;
   list.append(li);
+
+  li.addEventListener("mouseover", () => {
+    li.classList.add("item-hover");
+  });
+
+  li.addEventListener("mouseout", () => {
+    li.classList.remove("item-hover");
+  });
 }
 
 // Function that resets the list to be empty and sets a line of text indicating that it is empty.
@@ -247,7 +265,7 @@ function saveUser(e) {
     };
 
     data.push(newUser);
-    addUser(newUser);
+    setUpUsers();
     document.getElementById("myModal").style.display = "none";
   } else alert("Dont leave empty fields!");
 }

@@ -120,6 +120,12 @@ footer {
   padding: 1rem;
 }
 
+.item-hover {
+  background: #aaa;
+  border-radius: 0.5rem;
+  font-weight: bold;
+}
+
 /* Modal */
 .modal {
   display: none;
