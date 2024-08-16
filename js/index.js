@@ -90,11 +90,13 @@ function addUser(user) {
 
 // Function that resets the list to be empty and sets a line of text indicating that it is empty.
 function deleteAll() {
-  list.innerHTML = `
-    <h2 class="sub-info">No users added yet.</h2>
-  `;
-  data = [];
-  isEmpty = true;
+  if (confirm("Are you sure you want to delete everyone?")) {
+    list.innerHTML = `
+      <h2 class="sub-info">No users added yet.</h2>
+    `;
+    data = [];
+    isEmpty = true;
+  }
 }
 
 // Popup functions
@@ -272,13 +274,15 @@ function saveUser(e) {
 
 // Function that deletes a user/person from the data and list.
 function deleteUser(phoneID) {
-  data = data.filter((user) => user.number !== phoneID);
-  document.querySelector(`#number-${phoneID}`).remove();
-  if (data.length === 0) {
-    isEmpty = true;
-    list.innerHTML = `
-    <h2 class="sub-info">No users added yet.</h2>
-    `;
+  if (confirm(`Are you sure you want to delete user with number ${phoneID}?`)) {
+    data = data.filter((user) => user.number !== phoneID);
+    document.querySelector(`#number-${phoneID}`).remove();
+    if (data.length === 0) {
+      isEmpty = true;
+      list.innerHTML = `
+      <h2 class="sub-info">No users added yet.</h2>
+      `;
+    }
   }
 }
 
