@@ -5,6 +5,8 @@ let data = [
     number: "0597684218",
     age: 37,
     address: "Haifa",
+    email: "DanSalvatori@gmail.com",
+    notes: "Dan is a great man if I ever need assistance with the mafia.",
   },
   {
     img: "https://raw.githubusercontent.com/rougenij/Phone-book/main/assets/Karen.jpg",
@@ -12,6 +14,8 @@ let data = [
     number: "0534562845",
     age: 35,
     address: "Tel Aviv",
+    email: "KarenBooma@hotmail.com",
+    notes: "My boss",
   },
   {
     img: "https://raw.githubusercontent.com/rougenij/Phone-book/main/assets/Lara.jpg",
@@ -19,6 +23,8 @@ let data = [
     number: "0559521234",
     age: 28,
     address: "Haifa",
+    email: "Anya123@gmail.com",
+    notes: "Bestie#1",
   },
   {
     img: "https://raw.githubusercontent.com/rougenij/Phone-book/main/assets/Mike.jpg",
@@ -26,6 +32,8 @@ let data = [
     number: "0596549874",
     age: 40,
     address: "Eilat",
+    email: "MichaelTomi@gmail.com",
+    notes: "Mike the ice cream man :P",
   },
 ];
 
@@ -123,6 +131,11 @@ const addNewUser = () => {
         <label for="input-number" class="info-label">Contact Number:</label>
         <input type="number" placeholder="0595234585..." id="input-number" />
       </div>
+
+      <div class="form-item">
+        <label for="input-email" class="info-label">Email:</label>
+        <input type="email" placeholder="Email@email.com" id="input-email" />
+      </div>
     
       <div class="form-item">
         <label for="input-address" class="info-label">Contact Address:</label>
@@ -132,6 +145,11 @@ const addNewUser = () => {
       <div class="form-item">
         <label for="input-age" class="info-label">Contact Age:</label>
         <input type="number" placeholder="25..." id="input-age"/>
+      </div>
+
+      <div class="form-item">
+        <label for="input-notes" class="info-label">Notes:</label>
+        <textarea name="input-notes" placeholder="Notes go here" id="input-notes"></textarea>
       </div>
 
       <div class="form-item">
@@ -171,6 +189,11 @@ const editUser = (phoneID) => {
               <label for="input-number" class="info-label">Contact Number:</label>
               <input type="number" placeholder="0595234585..." id="input-number" />
             </div>
+
+            <div class="form-item">
+              <label for="input-email" class="info-label">Email:</label>
+              <input type="email" placeholder="Email@email.com" id="input-email" />
+            </div>
           
             <div class="form-item">
               <label for="input-address" class="info-label">Contact Address:</label>
@@ -180,6 +203,11 @@ const editUser = (phoneID) => {
             <div class="form-item">
               <label for="input-age" class="info-label">Contact Age:</label>
               <input type="number" placeholder="25..." id="input-age"/>
+            </div>
+
+            <div class="form-item">
+              <label for="input-notes" class="info-label">Notes:</label>
+              <textarea name="input-notes" placeholder="Notes go here" id="input-notes"></textarea>
             </div>
 
             <div class="form-item">
@@ -196,14 +224,18 @@ const editUser = (phoneID) => {
     //Selecing the inputs
     const name = document.getElementById("input-name");
     const number = document.getElementById("input-number");
+    const email = document.getElementById("input-email");
     const age = document.getElementById("input-age");
     const address = document.getElementById("input-address");
+    const notes = document.getElementById("input-notes");
     const img = document.getElementById("input-image");
 
     name.value = user.name;
     number.value = user.number;
+    email.value = user.email;
     age.value = user.age;
     address.value = user.address;
+    notes.value = user.notes;
     img.value = user.img;
   }
 };
@@ -220,14 +252,25 @@ const userInfo = (phoneID) => {
     <div class="info-item">
       <span class="info-label">Contact Name:</span> <span class="info-info">${user.name}</span>
     </div>
+
     <div class="info-item">
       <span class="info-label">Contact Number:</span> <span class="info-info">${user.number}</span>
     </div>
+
+    <div class="info-item">
+      <span class="info-label">Email:</span> <span class="info-info">${user.email}</span>
+    </div>
+
     <div class="info-item">
       <span class="info-label">Contact Age:</span> <span class="info-info">${user.age}</span>
     </div>
+
     <div class="info-item">
       <span class="info-label">Contact Address:</span> <span class="info-info">${user.address} </span>
+    </div>
+    
+    <div class="info-item">
+      <span class="info-label">Notes:</span> <span class="info-info">${user.notes}</span>
     </div>
   </div>
   
@@ -235,14 +278,16 @@ const userInfo = (phoneID) => {
 };
 
 //Functions that change contacts
-// Function that takes the inputted information from the user inside the input fields and saves it to an existing number if it exists otherwise adds.
+// Function that takes the inputted information from the user inside the input fields and adds to list and saves it in data.
 function saveUser(e) {
   e.preventDefault();
 
   const name = document.getElementById("input-name");
   const number = document.getElementById("input-number");
+  const email = document.getElementById("input-email");
   const age = document.getElementById("input-age");
   const address = document.getElementById("input-address");
+  const notes = document.getElementById("input-notes");
   const img = document.getElementById("input-image");
 
   if (name.value != "" && number.value != "") {
@@ -253,9 +298,11 @@ function saveUser(e) {
     const newUser = {
       img: img.value,
       name: name.value,
+      email: email.value,
       number: number.value,
       age: age.value,
       address: address.value,
+      notes: notes.value,
     };
 
     data.push(newUser);
@@ -286,16 +333,20 @@ const saveEdit = (e, phoneID) => {
 
   const name = document.getElementById("input-name");
   const number = document.getElementById("input-number");
+  const email = document.getElementById("input-email");
   const age = document.getElementById("input-age");
   const address = document.getElementById("input-address");
+  const notes = document.getElementById("input-notes");
   const img = document.getElementById("input-image");
 
   if (name.value != "" && number.value != "") {
     user.name = name.value;
     user.number = number.value;
+    user.email = email.value;
     user.age = age.value;
     user.address = address.value;
     user.img = img.value;
+    user.notes = notes.value;
 
     const userHTML = document.getElementById(`number-${phoneID}`);
     userHTML.innerHTML = `
