@@ -326,7 +326,8 @@ function saveUser(e) {
   if (
     name.value !== "" &&
     number.value !== "" &&
-    (email.value === "" || validateEmail(email.value))
+    (email.value === "" || validateEmail(email.value)) &&
+    checkUser(number.value, name.value)
   ) {
     if (img.value === "") {
       img.value =
@@ -345,7 +346,9 @@ function saveUser(e) {
     data.push(newUser);
     setUpUsers();
     document.getElementById("myModal").style.display = "none";
-  } else alert("Please insert a name and a valid phone number!");
+  } else if (!checkUser(number.value, name.value))
+    alert("Name or Number already exists. Please user a different one.");
+  else alert("Please insert a name and a valid phone number!");
 }
 
 // Function that deletes a user/person from the data and list.
@@ -379,7 +382,8 @@ const saveEdit = (e, phoneID) => {
   if (
     name.value !== "" &&
     number.value !== "" &&
-    (email.value === "" || validateEmail(email.value))
+    (email.value === "" || validateEmail(email.value)) &&
+    checkUser(number.value, name.value, phoneID)
   ) {
     user.name = name.value.trim();
     user.number = fixNumber(number.value.trim());
@@ -415,6 +419,8 @@ const saveEdit = (e, phoneID) => {
     document.getElementById("myModal").style.display = "none";
   } else if (!validateEmail(email.value))
     alert("Please enter a valid email address");
+  else if (!checkUser(number.value, name.value, phoneID))
+    alert("Name or Number already exists. Please user a different one.");
   else {
     alert("Please enter name and a valid phone number");
   }
@@ -452,4 +458,16 @@ function validateEmail(email) {
 function fixNumber(number) {
   if (number[0] === "+" || number[0] === "-") return number.slice(1);
   return number;
+}
+
+// Function that checks if name or number already exists
+function checkUser(number, name, phoneID = "") {
+  let temp = data;
+  if (phoneID !== "") temp = temp.filter((user) => user.number !== phoneID);
+  const user = temp.filter(
+    (user) =>
+      user.number === number || user.name.toLowerCase() === name.toLowerCase()
+  );
+  if (user.length >= 1) return false;
+  return true;
 }
