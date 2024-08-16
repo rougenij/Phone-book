@@ -78,14 +78,6 @@ function addUser(user) {
     </div>
   `;
   list.append(li);
-
-  li.addEventListener("mouseover", () => {
-    li.classList.add("item-hover");
-  });
-
-  li.addEventListener("mouseout", () => {
-    li.classList.remove("item-hover");
-  });
 }
 
 // Function that resets the list to be empty and sets a line of text indicating that it is empty.
@@ -339,4 +331,15 @@ search.addEventListener("input", (e) => {
 
   list.innerHTML = "";
   filteredList.forEach((user) => addUser(user));
+});
+
+// Event listener for the hover effect on users list items with event delegation.
+addEventListener("mouseover", (e) => {
+  if (e.target.closest("li"))
+    e.target.closest("li").classList.add("item-hover");
+});
+
+addEventListener("mouseout", (e) => {
+  if (e.target.closest("li"))
+    e.target.closest("li").classList.remove("item-hover");
 });
