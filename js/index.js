@@ -268,7 +268,7 @@ const userInfo = (phoneID) => {
     <div class="info-item">
       <span class="info-label">Contact Address:</span> <span class="info-info">${user.address} </span>
     </div>
-    
+
     <div class="info-item">
       <span class="info-label">Notes:</span> <span class="info-info">${user.notes}</span>
     </div>
@@ -290,8 +290,12 @@ function saveUser(e) {
   const notes = document.getElementById("input-notes");
   const img = document.getElementById("input-image");
 
-  if (name.value != "" && number.value != "") {
-    if (img.value == "") {
+  if (
+    name.value !== "" &&
+    number.value !== "" &&
+    (email.value === "" || validateEmail(email.value))
+  ) {
+    if (img.value === "") {
       img.value =
         "https://raw.githubusercontent.com/rougenij/Phone-book/main/assets/user.png";
     }
@@ -299,7 +303,7 @@ function saveUser(e) {
       img: img.value,
       name: name.value,
       email: email.value,
-      number: number.value,
+      number: fixNumber(number.value),
       age: age.value,
       address: address.value,
       notes: notes.value,
@@ -308,7 +312,7 @@ function saveUser(e) {
     data.push(newUser);
     setUpUsers();
     document.getElementById("myModal").style.display = "none";
-  } else alert("Dont leave empty fields!");
+  } else alert("Please insert a name and a valid phone number!");
 }
 
 // Function that deletes a user/person from the data and list.
@@ -339,9 +343,13 @@ const saveEdit = (e, phoneID) => {
   const notes = document.getElementById("input-notes");
   const img = document.getElementById("input-image");
 
-  if (name.value != "" && number.value != "") {
+  if (
+    name.value !== "" &&
+    number.value !== "" &&
+    (email.value === "" || validateEmail(email.value))
+  ) {
     user.name = name.value;
-    user.number = number.value;
+    user.number = fixNumber(number.value);
     user.email = email.value;
     user.age = age.value;
     user.address = address.value;
@@ -371,7 +379,11 @@ const saveEdit = (e, phoneID) => {
     </div>
   `;
     document.getElementById("myModal").style.display = "none";
-  } else alert("Please enter name or phone number");
+  } else if (!validateEmail(email.value))
+    alert("Please enter a valid email address");
+  else {
+    alert("Please enter name and a valid phone number");
+  }
 };
 
 // Event Listener on input that listens to search bar input and filters the list accordingly
@@ -394,3 +406,16 @@ addEventListener("mouseout", (e) => {
   if (e.target.closest("li"))
     e.target.closest("li").classList.remove("item-hover");
 });
+
+// Email Validation Function
+function validateEmail(email) {
+  const re =
+    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+}
+
+// Function that takes a number that starts with a symbol and removes it.
+function fixNumber(number) {
+  if (number[0] === "+" || number[0] === "-") return number.slice(1);
+  return number;
+}
