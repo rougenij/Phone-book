@@ -1,5 +1,6 @@
 "use strict";
 
+// The starting users/people in the list
 let data = [
   {
     img: "https://raw.githubusercontent.com/rougenij/Phone-book/main/assets/Dan.jpg",
@@ -39,9 +40,50 @@ let data = [
   },
 ];
 
+// Not complete, just the similar parts between add and edit
+const formInputStructure = `<form>
+  <div>
+      <div class="form-item">
+        <label for"input-name" class="info-label">Contact Name:</label>
+        <input type="text" placeholder="John Doe..."  id="input-name"/>
+      </div>
+    
+      <div class="form-item">
+        <label for="input-number" class="info-label">Contact Number:</label>
+        <input type="number" placeholder="0595234585..." id="input-number" />
+      </div>
+
+      <div class="form-item">
+        <label for="input-email" class="info-label">Email:</label>
+        <input type="email" placeholder="Email@email.com" id="input-email" />
+      </div>
+    
+      <div class="form-item">
+        <label for="input-address" class="info-label">Contact Address:</label>
+        <input type="text" placeholder="Any town,123" id="input-address" />
+      </div>
+    
+      <div class="form-item">
+        <label for="input-age" class="info-label">Contact Age:</label>
+        <input type="number" placeholder="25..." id="input-age"/>
+      </div>
+
+      <div class="form-item">
+        <label for="input-notes" class="info-label">Notes:</label>
+        <textarea name="input-notes" placeholder="Notes go here" id="input-notes"></textarea>
+      </div>
+
+      <div class="form-item">
+        <label for="input-image" class="info-label">Contact Image:</label>
+        <input type="text"  id="input-image"/>
+      </div>
+    `;
+
+// Setting up the list and search bar for use later
 const list = document.querySelector(".list");
 const search = document.querySelector(".search-bar");
 
+// A flag for when the list is empty
 let isEmpty = false;
 
 // Set up the initial people in list
@@ -123,43 +165,7 @@ const addNewUser = () => {
 
   const div = document.getElementById("modal-container");
   div.innerHTML = `
- <form>
-  <div>
-      <div class="form-item">
-        <label for"input-name" class="info-label">Contact Name:</label>
-        <input type="text" placeholder="John Doe..."  id="input-name"/>
-      </div>
-    
-      <div class="form-item">
-        <label for="input-number" class="info-label">Contact Number:</label>
-        <input type="number" placeholder="0595234585..." id="input-number" />
-      </div>
-
-      <div class="form-item">
-        <label for="input-email" class="info-label">Email:</label>
-        <input type="email" placeholder="Email@email.com" id="input-email" />
-      </div>
-    
-      <div class="form-item">
-        <label for="input-address" class="info-label">Contact Address:</label>
-        <input type="text" placeholder="Any town,123" id="input-address" />
-      </div>
-    
-      <div class="form-item">
-        <label for="input-age" class="info-label">Contact Age:</label>
-        <input type="number" placeholder="25..." id="input-age"/>
-      </div>
-
-      <div class="form-item">
-        <label for="input-notes" class="info-label">Notes:</label>
-        <textarea name="input-notes" placeholder="Notes go here" id="input-notes"></textarea>
-      </div>
-
-      <div class="form-item">
-        <label for="input-image" class="info-label">Contact Image:</label>
-        <input type="text"  id="input-image"/>
-      </div>
-    
+  ${formInputStructure}   
       <div class="form-item">
         <button class="input-btn" onclick="saveUser(event)">Save</button>
       </div>
@@ -181,43 +187,7 @@ const editUser = (phoneID) => {
     `;
   } else {
     div.innerHTML = `
-     <form>
-        <div>
-            <div class="form-item">
-              <label for"input-name" class="info-label">Contact Name:</label>
-              <input type="text" placeholder="John Doe..."  id="input-name"/>
-            </div>
-          
-            <div class="form-item">
-              <label for="input-number" class="info-label">Contact Number:</label>
-              <input type="number" placeholder="0595234585..." id="input-number" />
-            </div>
-
-            <div class="form-item">
-              <label for="input-email" class="info-label">Email:</label>
-              <input type="email" placeholder="Email@email.com" id="input-email" />
-            </div>
-          
-            <div class="form-item">
-              <label for="input-address" class="info-label">Contact Address:</label>
-              <input type="text" placeholder="Any town,123" id="input-address" />
-            </div>
-          
-            <div class="form-item">
-              <label for="input-age" class="info-label">Contact Age:</label>
-              <input type="number" placeholder="25..." id="input-age"/>
-            </div>
-
-            <div class="form-item">
-              <label for="input-notes" class="info-label">Notes:</label>
-              <textarea name="input-notes" placeholder="Notes go here" id="input-notes"></textarea>
-            </div>
-
-            <div class="form-item">
-              <label for="input-image" class="info-label">Contact Image:</label>
-              <input type="text"  id="input-image"/>
-            </div>
-          
+     ${formInputStructure}   
             <div class="form-item">
               <button class="input-btn" onclick="saveEdit(event,'${phoneID}')">Save</button>
             </div>
