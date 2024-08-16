@@ -257,30 +257,56 @@ const userInfo = (phoneID) => {
     />
 
     <div class="info-item">
-      <span class="info-label">Contact Name:</span> <span class="info-info">${user.name}</span>
+      <span class="info-label">Contact Name:</span> <span class="info-info">${
+        user.name
+      }</span>
     </div>
 
     <div class="info-item">
-      <span class="info-label">Contact Number:</span> <span class="info-info">${user.number}</span>
+      <span class="info-label">Contact Number:</span> <span class="info-info">${
+        user.number
+      }</span>
     </div>
 
-    <div class="info-item">
-      <span class="info-label">Email:</span> <span class="info-info">${user.email}</span>
-    </div>
-
-    <div class="info-item">
-      <span class="info-label">Contact Age:</span> <span class="info-info">${user.age}</span>
-    </div>
-
-    <div class="info-item">
-      <span class="info-label">Contact Address:</span> <span class="info-info">${user.address} </span>
-    </div>
-
-    <div class="info-item">
-      <span class="info-label">Notes:</span> <span class="info-info">${user.notes}</span>
-    </div>
+    ${
+      user.email.trim() === ""
+        ? ""
+        : `
+        <div class="info-item">
+          <span class="info-label">Email:</span> <span class="info-info">${user.email}</span>
+        </div>
+        `
+    }
+    
+    ${
+      user.age.trim() === ""
+        ? ""
+        : `
+        <div class="info-item">
+          <span class="info-label">Contact Age:</span> <span class="info-info">${user.age}</span>
+        </div>`
+    }
+    
+    ${
+      user.address.trim() === ""
+        ? ""
+        : `
+        <div class="info-item">
+          <span class="info-label">Contact Address:</span> <span class="info-info">${user.address} </span>
+        </div>
+      `
+    }
+    
+    ${
+      user.notes.trim() === ""
+        ? ""
+        : `
+        <div class="info-item">
+          <span class="info-label">Notes:</span> <span class="info-info">${user.notes}</span>
+        </div>
+      `
+    }
   </div>
-  
   `;
 };
 
@@ -307,13 +333,13 @@ function saveUser(e) {
         "https://raw.githubusercontent.com/rougenij/Phone-book/main/assets/user.png";
     }
     const newUser = {
-      img: img.value,
-      name: name.value,
-      email: email.value,
-      number: fixNumber(number.value),
-      age: age.value,
-      address: address.value,
-      notes: notes.value,
+      img: img.value.trim(),
+      name: name.value.trim(),
+      email: email.value.trim(),
+      number: fixNumber(number.value.trim()),
+      age: age.value.trim(),
+      address: address.value.trim(),
+      notes: notes.value.trim(),
     };
 
     data.push(newUser);
@@ -355,13 +381,13 @@ const saveEdit = (e, phoneID) => {
     number.value !== "" &&
     (email.value === "" || validateEmail(email.value))
   ) {
-    user.name = name.value;
-    user.number = fixNumber(number.value);
-    user.email = email.value;
-    user.age = age.value;
-    user.address = address.value;
-    user.img = img.value;
-    user.notes = notes.value;
+    user.name = name.value.trim();
+    user.number = fixNumber(number.value.trim());
+    user.email = email.value.trim();
+    user.age = age.value.trim();
+    user.address = address.value.trim();
+    user.img = img.value.trim();
+    user.notes = notes.value.trim();
 
     const userHTML = document.getElementById(`number-${phoneID}`);
     userHTML.innerHTML = `
@@ -372,6 +398,7 @@ const saveEdit = (e, phoneID) => {
         alt="${user.name} image"
         />
         <p class="name">${user.name}</p>
+        <p class="number">${user.number}</p>
     </div>
     <div class="flex-center-between right-side">
         <button class="icon-btn" onclick="userInfo('${user.number}')">
