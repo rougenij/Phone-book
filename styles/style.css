@@ -211,6 +211,12 @@ textarea {
   align-items: flex-start;
 }
 
+.info-pfp {
+  width: 200px;
+  height: 200px;
+  align-self: center;
+}
+
 .info-label {
   font-size: 1.5rem;
   text-align: left;

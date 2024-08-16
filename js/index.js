@@ -250,6 +250,12 @@ const userInfo = (phoneID) => {
 
   div.innerHTML = `
   <div class="info-flex">
+    <img
+          class="pfp info-pfp"
+          src="${user.img}"
+          alt="${user.name} image"
+    />
+
     <div class="info-item">
       <span class="info-label">Contact Name:</span> <span class="info-info">${user.name}</span>
     </div>
