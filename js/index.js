@@ -1,3 +1,5 @@
+"use strict";
+
 let data = [
   {
     img: "https://raw.githubusercontent.com/rougenij/Phone-book/main/assets/Dan.jpg",
