@@ -72,6 +72,7 @@ function addUser(user) {
         alt="${user.name} image"
         />
         <p class="name">${user.name}</p>
+        <p class="number">${user.number}</p>
     </div>
     <div class="flex-center-between right-side">
         <button class="icon-btn" onclick="userInfo('${user.number}')">

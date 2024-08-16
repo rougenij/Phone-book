@@ -115,7 +115,8 @@ footer {
   border-radius: 10rem;
 }
 
-.name {
+.name,
+.number {
   font-size: 1.3rem;
   padding: 1rem;
 }
@@ -256,7 +257,8 @@ textarea {
     height: 200px;
   }
 
-  .name {
+  .name,
+  .number {
     font-size: 2rem;
   }
 
