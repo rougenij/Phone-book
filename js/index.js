@@ -219,6 +219,7 @@ const userInfo = (phoneID) => {
 
   const div = document.getElementById("modal-container");
   const user = data.filter((user) => user.number === phoneID)[0];
+  console.log(user);
 
   div.innerHTML = `
   <div class="info-flex">
@@ -251,7 +252,7 @@ const userInfo = (phoneID) => {
     }
     
     ${
-      user.age.trim() === ""
+      user.age === ""
         ? ""
         : `
         <div class="info-item">
